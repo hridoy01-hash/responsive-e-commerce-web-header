@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Furnish Header</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+        :root {
+            --primaryColor: #c1a59a;
+            --secondaryColor: #1e272e;
+            --themeFont: "Poppins";
+        }
+
+        .s0501_universal * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--themeFont);
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .s0501_container {
+            max-width: 1340px;
+            margin: 0 auto;
+            padding: 0px 20px;
+        }
+
+        .s0501_header_wrapper {
+            width: 100%;
+            border-bottom: 1px solid rgba(238, 238, 238, 50%);
+        }
+
+        .s0501_header_content_wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 55px;
+        }
+
+        .s0501_brand_logo {
+            height: 15px;
+            width: 75px;
+        }
+
+        .s0501_header_content_left_side_wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            width: 100%;
+        }
+
+        .s0501_mobile_footer_menubar li a svg {
+            display: flex;
+        }
+
+        a {
+            display: flex;
+        }
+
+        ul.s0501_navbar_item {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            list-style: none;
+        }
+
+        .s0501_navbar_item li {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .s0501_mobile_menu_footer_wrapper {
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            box-shadow: 0 0 6px rgba(0, 0, 0, 16%);
+        }
+
+        .s0501_mobile_menu_footer {
+            height: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .s0501_mobile_footer_menubar {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .s0501_header_navlist_wrapper {
+            display: none;
+        }
+
+        /* notification aler and counter */
+        .s0501_notification_count_wrapper {
+            position: absolute;
+            right: -12px;
+            top: -6px;
+            height: 11px;
+            width: 11px;
+            background-color: black;
+            font-size: 8px;
+            color: white;
+            text-align: center;
+            border-radius: 50%;
+        }
+
+        .s0501_wishlist_icon_wrapper {
+            position: relative;
+        }
+
+        /* mobile notification */
+        .s0501_mobile_wishlist_counter_wrapper {
+            position: absolute;
+            right: -10px;
+            top: -9px;
+            height: 11px;
+            width: 11px;
+            background-color: black;
+            font-size: 8px;
+            color: white;
+            text-align: center;
+            border-radius: 50%;
+        }
+
+        .s0501_mobile_wishlist_icon_wrapper {
+            position: relative;
+        }
+
+        /* sider bar */
+        .active_mobile_sidebar.s0501_sidebar_navigation_main_wrapper {
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(30, 39, 46, 70%);
+            position: fixed;
+            top: 0;
+            transition: all .9s ease-in-out;
+        }
+
+        .s0501_sidebar_content_main_wrapper {
+            width: 290px;
+            height: 100vh;
+            background-color: #ffff;
+            position: fixed;
+            top: 0;
+            padding: 30px 30px;
+            overflow-y: auto;
+            left: -100%;
+            transition: all .5s ease-in-out;
+        }
+
+        .active_mobile_sidebar .s0501_sidebar_content_main_wrapper {
+            left: 0;
+        }
+
+
+        .s0501_sidebar_navigation_content_wrapper {
+            position: relative;
+        }
+
+        .s0501_sidebar_catagories_list_wrapper {
+            padding-top: 35px;
+            margin-top: 5px;
+            height: calc(100vh - 151px);
+            overflow: auto;
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+
+        .s0501_sidebar_close_btn_wrapper {
+            display: inline-block;
+        }
+
+        .s0501_sidebar_catagories_list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .s0501_sidebar_sub_catagories_list {
+            list-style: none;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 25px;
+            display: none;
+        }
+
+        /* active sub catagories */
+        .active_sub_catagories {
+            display: flex;
+        }
+
+        .s0501_sub_sub_catagories_item {
+            display: flex;
+            list-style: none;
+            flex-direction: column;
+            gap: 20px;
+
+        }
+
+        /* active sub catagories */
+        .active_sub_sub_catagories {
+            display: flex;
+        }
+
+        .s0501_sub_sub_catagories_item li a {
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 500;
+            color: rgba(30, 39, 46, 50%) !important;
+        }
+
+        .s0501_sub_sub_catagories_item li {
+            text-decoration: none;
+            color: var(--secondaryColor);
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .s0501_sidebar_sub_catagories_list li a {
+            text-decoration: none;
+            color: var(--secondaryColor);
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .s0501_sidebar_sub_catagories_list li {
+            text-decoration: none;
+            color: var(--secondaryColor);
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+
+        .s0501_sidebar_catagories_list li a {
+            text-decoration: none;
+            color: var(--secondaryColor);
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .s0501_sub_sub_catagories_wrapper {
+            margin-top: 25px;
+        }
+
+        .s0501_sidebar_catagories_list li {
+            text-decoration: none;
+            color: var(--secondaryColor);
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .s0501_catagories_single_item_wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .s0501_sub_catagories_item {
+            color: rgba(30, 39, 46, 50%);
+        }
+
+        /* active sidebar sub sub catagories icon rotate */
+
+        .active_sub_sub_catagories_drop_icon .s0501_drop_menu_icon span svg {
+            transform: rotate(180deg);
+        }
+
+        .active_sub_sub_catagories_drop_icon .s0501_sub_catagories_item {
+            color: black;
+        }
+
+        /* sidebar navigation footer */
+
+        .s0501_get_in_touch_text {
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .s0501_social_icon_wrapper {
+            margin-top: 20px;
+        }
+
+        .s0501_social_icon_list {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            /* flex-wrap: wrap; */
+            gap: 32px;
+        }
+
+        /* active icon chnage fill color */
+        .active_icon svg path {
+            fill: var(--secondaryColor);
+        }
+
+        /* Furnish search popup style */
+
+        .s0501_search_popup_main_wrapper {
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(30, 39, 46, 70%);
+            position: fixed;
+            top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0px 20px;
+            opacity: 0;
+            transition: all .5s ease-in-out;
+            visibility: hidden;
+
+        }
+
+        /* active serach popup */
+        .active_search_popup {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .s0501_search_content_wrapper {
+            width: 320px;
+        }
+
+        .s0501_popup_close_area_wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            font-size: 12px;
+            font-weight: 400;
+            color: white;
+        }
+
+        .s0501_search_input {
+            border: none;
+            outline: none;
+            padding: 11px 15px;
+            background-color: white;
+            width: 100%;
+            font-size: 12px;
+            font-weight: 400;
+        }
+
+        .s0501_search_input_box_wrapper {
+            margin-top: 15px;
+        }
+
+        .s0501_search_result_output_wrappper {
+            background-color: white;
+            margin-top: 10px;
+        }
+
+        .s0501_search_result_list {
+            list-style: none;
+            font-size: 12px;
+            font-weight: 400;
+        }
+
+        .s0501_result_item {
+            padding: 15px;
+            display: block;
+        }
+
+        .s0501_search_result_list li {
+            border-bottom: 1px solid rgba(30, 39, 46, 10%);
+        }
+
+        .s0501_search_result_list li:last-child {
+            margin: 0;
+            padding-bottom: 0px;
+            border-bottom: 0px solid rgba(30, 39, 46, 10%);
+        }
+
+        @media screen and (min-width:640px) {
+            .s0501_brand_logo a svg {
+                width: 100px;
+                height: 20px;
+            }
+
+            .s0501_search_icon_wrapper a svg {
+                width: 30px;
+                height: 30px;
+            }
+
+            .s0501_header_content_left_side_wrapper {
+                width: unset;
+            }
+
+            .s0501_header_navlist_wrapper {
+                display: block;
+            }
+
+            .s0501_mobile_menu_footer_wrapper {
+                display: none;
+            }
+
+            .s0501_header_content_wrapper {
+                height: 100px;
+            }
+
+            .s0501_brand_logo {
+                height: 60px;
+                width: 100px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .s0501_navbar_item {
+                display: flex;
+                list-style: none;
+                align-items: center;
+                gap: 30px;
+            }
+
+
+            .active_mobile_sidebar.s0501_sidebar_navigation_main_wrapper {
+                width: 100%;
+                height: 100vh;
+                background-color: rgba(30, 39, 46, 70%);
+                position: fixed;
+                top: 0;
+                transition: all .9s ease-in-out;
+            }
+
+            .s0501_sidebar_content_main_wrapper {
+                width: 290px;
+                height: 100vh;
+                background-color: #ffff;
+                position: fixed;
+                padding: 30px 30px;
+                overflow-y: auto;
+                left: unset;
+                right: -100%;
+                transition: all .5s ease-in-out;
+            }
+
+            .active_mobile_sidebar .s0501_sidebar_content_main_wrapper {
+                left: unset;
+                right: 0;
+
+            }
+
+            .s0501_sidebar_catagories_list {
+                gap: 25px;
+            }
+
+            .s0501_sidebar_sub_catagories_list {
+                margin-top: 25px;
+            }
+
+            .s0501_sub_sub_catagories_item li a {
+                font-size: 14px;
+            }
+
+            .s0501_sub_sub_catagories_item li {
+                font-size: 14px;
+            }
+
+            .s0501_sidebar_sub_catagories_list li a {
+                font-size: 14px;
+            }
+
+            .s0501_sidebar_sub_catagories_list li {
+                font-size: 14px;
+            }
+
+
+            .s0501_sidebar_catagories_list li a {
+                font-size: 14px;
+            }
+
+            .s0501_sidebar_catagories_list li {
+                font-size: 14px;
+            }
+
+            /* sidebar navigation footer */
+
+            .s0501_get_in_touch_text {
+                font-size: 14px;
+            }
+
+            .s0501_social_icon_list {
+                gap: 30px;
+            }
+
+            /* search popup result */
+            .s0501_search_content_wrapper {
+                width: 650px;
+            }
+
+            .s0501_popup_close_area_wrapper {
+                gap: 10px;
+                font-size: 14px;
+            }
+
+            .s0501_search_input {
+                padding: 13px 15px;
+                font-size: 14px;
+            }
+
+            .s0501_search_input_box_wrapper {
+                margin-top: 20px;
+            }
+
+            .s0501_search_result_list {
+                font-size: 14px;
+            }
+        }
+
+        @media screen and (min-width:1025px) {
+            .s0501_header_content_wrapper {
+                padding: 37px 0px;
+            }
+
+            .s0501_brand_logo {
+                height: 60px;
+                width: 120px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- furnish header area -->
+    <header>
+        <section class="s0501_header_main_wrapper s0501_universal">
+
+            <!-- header area -->
+            <div class="s0501_header_wrapper">
+                <div class="s0501_container">
+                    <div class="s0501_header_content_wrapper">
+                        <div class="s0501_header_content_left_side_wrapper">
+                            <div class="s0501_brand_logo">
+                                <a href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="75" height="15" viewBox="0 0 75 15">
+                                        <g id="Logo" transform="translate(-20 -20)">
+                                            <g id="Furnish" transform="translate(-381 -498.8)">
+                                                <path id="Path_1713" data-name="Path 1713"
+                                                    d="M541.55,568.2v5.564a2.536,2.536,0,0,1-.564,1.767,1.979,1.979,0,0,1-1.541.62,1.948,1.948,0,0,1-1.494-.592,2.341,2.341,0,0,1-.554-1.664v-5.7h-3.2v6.09a4.827,4.827,0,0,0,1.062,3.308,3.631,3.631,0,0,0,2.867,1.2,3.9,3.9,0,0,0,2.077-.545,3.491,3.491,0,0,0,1.344-1.466v1.9h3.233V568.2Z"
+                                                    transform="translate(-120.681 -45.02)" fill="#c1a59a" />
+                                                <path id="Path_1714" data-name="Path 1714"
+                                                    d="M680.165,567.564a4.566,4.566,0,0,0-1.551,1.523v-1.974H675.4V577.6h3.214v-4.774a2.19,2.19,0,0,1,.7-1.842,3.174,3.174,0,0,1,1.983-.545h.921V567A3.957,3.957,0,0,0,680.165,567.564Z"
+                                                    transform="translate(-248.611 -43.933)" fill="#c1a59a" />
+                                                <path id="Path_1715" data-name="Path 1715"
+                                                    d="M776.921,568.2a3.631,3.631,0,0,0-2.867-1.2,3.939,3.939,0,0,0-2.1.545,3.461,3.461,0,0,0-1.344,1.485v-1.917H767.4V577.6h3.214v-5.564a2.508,2.508,0,0,1,.573-1.767,2.009,2.009,0,0,1,1.551-.62,1.926,1.926,0,0,1,1.476.592,2.313,2.313,0,0,1,.555,1.645V577.6h3.214v-6.09A4.827,4.827,0,0,0,776.921,568.2Z"
+                                                    transform="translate(-331.964 -43.933)" fill="#c1a59a" />
+                                                <path id="Path_1716" data-name="Path 1716"
+                                                    d="M907.708,519.271a2.29,2.29,0,0,0-2.782,0,1.531,1.531,0,0,0-.526,1.191,1.51,1.51,0,0,0,.526,1.173,2.29,2.29,0,0,0,2.782,0,1.51,1.51,0,0,0,.526-1.173A1.531,1.531,0,0,0,907.708,519.271Zm-3.008,4.091v10.306h3.214V523.362Z"
+                                                    transform="translate(-456.088)" fill="#c1a59a" />
+                                                <path id="Path_1717" data-name="Path 1717"
+                                                    d="M974.677,572.7a3.261,3.261,0,0,0-1.334-.949,16.151,16.151,0,0,0-1.974-.573,8.22,8.22,0,0,1-1.626-.489.782.782,0,0,1-.517-.733.82.82,0,0,1,.282-.667,1.262,1.262,0,0,1,.827-.235,1.8,1.8,0,0,1,1.156.367,1.672,1.672,0,0,1,.592,1.006h3.008A4.335,4.335,0,0,0,973.6,567.8a4.812,4.812,0,0,0-3.186-1,4.668,4.668,0,0,0-3.026.874,2.807,2.807,0,0,0-1.071,2.284,2.539,2.539,0,0,0,.545,1.72,3.154,3.154,0,0,0,1.3.912,13.377,13.377,0,0,0,1.917.526,9.524,9.524,0,0,1,1.682.5.8.8,0,0,1,.517.78.855.855,0,0,1-.282.667,1.2,1.2,0,0,1-.827.254,2.16,2.16,0,0,1-1.288-.357,1.393,1.393,0,0,1-.573-1.034h-3.1a3.965,3.965,0,0,0,1.56,2.688,5.61,5.61,0,0,0,3.4.94,5.512,5.512,0,0,0,2.18-.395,3.223,3.223,0,0,0,1.41-1.09,2.714,2.714,0,0,0,.489-1.6A2.623,2.623,0,0,0,974.677,572.7Z"
+                                                    transform="translate(-512.08 -43.752)" fill="#c1a59a" />
+                                                <path id="Path_1718" data-name="Path 1718"
+                                                    d="M1095.921,536.226a3.666,3.666,0,0,0-2.867-1.18,4,4,0,0,0-2.1.535,3.413,3.413,0,0,0-1.344,1.457V531.8H1086.4v13.647h3.214v-5.459a2.431,2.431,0,0,1,.573-1.733,2.027,2.027,0,0,1,1.551-.609,1.946,1.946,0,0,1,1.476.581,2.242,2.242,0,0,1,.554,1.614v5.606h3.214v-5.975A4.678,4.678,0,0,0,1095.921,536.226Z"
+                                                    transform="translate(-620.983 -11.778)" fill="#c1a59a" />
+                                                <path id="Path_1719" data-name="Path 1719"
+                                                    d="M445.2,596.6v2.444h5.15V596.6Zm2.575,1.644a.422.422,0,1,1,.422-.422A.422.422,0,0,1,447.775,598.244Z"
+                                                    transform="translate(-40.046 -70.638)" fill="#c1a59a" />
+                                                <path id="Path_1720" data-name="Path 1720"
+                                                    d="M404.214,538.4H401v13.026h3.214V538.4Z"
+                                                    transform="translate(0 -17.758)" fill="#c1a59a" />
+                                                <path id="Path_1721" data-name="Path 1721"
+                                                    d="M445.2,538.4v2.556h6.391V538.4Zm3.2,1.7a.422.422,0,1,1,.422-.422A.422.422,0,0,1,448.4,540.1Z"
+                                                    transform="translate(-40.046 -17.758)" fill="#c1a59a" />
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="s0501_search_icon_wrapper">
+                                <a href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26">
+                                        <g id="Search" transform="translate(0.032 3.048)">
+                                            <g id="Icon" transform="translate(1.968 2.968)">
+                                                <rect id="Rectangle_7" data-name="Rectangle 7" width="26" height="26"
+                                                    transform="translate(-2 -6.016)" fill="#b59175" opacity="0" />
+                                                <path id="Path_2" data-name="Path 2"
+                                                    d="M12.968,12.2,9.581,8.816a5.418,5.418,0,1,0-.765.765L12.2,12.968ZM5.395,9.722A4.328,4.328,0,1,1,9.722,5.395,4.328,4.328,0,0,1,5.395,9.722Z"
+                                                    transform="translate(4.532 0.516)" fill="#1e272e" />
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="s0501_header_content_right_side_wrapper">
+                            <div class="s0501_header_navlist_wrapper">
+                                <ul class="s0501_navbar_item">
+                                    <li>
+                                        <div class="s0501_wishlist_icon_wrapper">
+                                            <div class="s0501_wishlist_icon">
+                                                <a href="#" id="s0501_active_fill_icon_large_device">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14.001"
+                                                        height="20.004" viewBox="0 0 16 14.993">
+                                                        <g id="heart_1_" data-name="heart (1)"
+                                                            transform="translate(0.005 -0.917)" fill="none">
+                                                            <path
+                                                                d="M11.66.917A4.262,4.262,0,0,0,8,3.127,4.262,4.262,0,0,0,4.33.917,4.545,4.545,0,0,0,0,5.638c0,4.537,7.3,9.776,7.612,10L8,15.91l.385-.274c.311-.221,7.612-5.462,7.612-10A4.545,4.545,0,0,0,11.66.917Z"
+                                                                stroke="none" />
+                                                            <path
+                                                                d="M 4.346558570861816 2.117606163024902 C 2.53859806060791 2.215920448303223 1.128963470458984 3.767226219177246 1.197503089904785 5.592656135559082 L 1.198352813720703 5.637685775756836 C 1.198352813720703 7.180126190185547 2.355712890625 9.178046226501465 4.545312881469727 11.41544628143311 C 5.937286376953125 12.83780479431152 7.368166923522949 13.95915985107422 7.995199680328369 14.4299201965332 C 8.613064765930176 13.96612167358398 10.05007171630859 12.84128570556641 11.44479274749756 11.41598606109619 C 13.63442230224609 9.178365707397461 14.79179286956787 7.180266380310059 14.79179286956787 5.637685775756836 L 14.79264259338379 5.592656135559082 C 14.86118221282959 3.767226219177246 13.4515552520752 2.215920448303223 11.64359474182129 2.117607116699219 C 10.56367492675781 2.147141456604004 9.570833206176758 2.753149032592773 9.046162605285645 3.705656051635742 L 7.995072841644287 5.613865852355957 L 6.94398307800293 3.705656051635742 C 6.419312477111816 2.753138542175293 5.426467895507812 2.147130966186523 4.346558570861816 2.117606163024902 M 4.329913139343262 0.9169960021972656 C 5.857302665710449 0.9408664703369141 7.255342483520508 1.783736228942871 7.995072841644287 3.126686096191406 C 8.73480224609375 1.783736228942871 10.13285255432129 0.9408760070800781 11.66023254394531 0.9169960021972656 C 14.15046310424805 1.025715827941895 16.08577346801758 3.134896278381348 15.99179267883301 5.637685775756836 C 15.99179267883301 10.17423629760742 8.69078254699707 15.41519641876221 8.380252838134766 15.63616561889648 L 7.995072841644287 15.91003608703613 L 7.609892845153809 15.63616561889648 C 7.299363136291504 15.41385650634766 -0.001646995544433594 10.17423629760742 -0.001646995544433594 5.637685775756836 C -0.09562778472900391 3.134896278381348 1.839682579040527 1.025715827941895 4.329913139343262 0.9169960021972656 Z"
+                                                                stroke="none" fill="#1e272e" />
+                                                        </g>
+                                                    </svg>
+                                                </a>
+                                            </div>
+                                            <div class="s0501_notification_count_wrapper">
+                                                <span class="s0501_notification_count">
+                                                    2
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="s0501_wishlist_icon_wrapper">
+                                            <div class="s0501_wishlist_icon">
+                                                <a href="#">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14.001"
+                                                        height="20.004" viewBox="0 0 15.6 16">
+                                                        <g id="Icon" fill="none">
+                                                            <path
+                                                                d="M9.75,14.666A1.3,1.3,0,1,1,11.05,16,1.318,1.318,0,0,1,9.75,14.666Zm-6.5,0A1.3,1.3,0,1,1,4.551,16,1.318,1.318,0,0,1,3.25,14.666Zm1.157-2A1.97,1.97,0,0,1,2.47,10.9L1.441,1.92A.658.658,0,0,0,.8,1.332H0V0H.8A1.969,1.969,0,0,1,2.732,1.765L2.758,2H15.6l-1.406,8H3.675l.085.744a.658.658,0,0,0,.647.59H13v1.334Z"
+                                                                stroke="none" />
+                                                            <path
+                                                                d="M 13.18637084960938 8.799779891967773 L 14.17070960998535 3.198879957199097 L 2.795534610748291 3.198879957199097 L 3.437389135360718 8.799779891967773 L 13.18637084960938 8.799779891967773 M 11.05025005340576 16 C 10.33271980285645 16 9.75 15.40266036987305 9.75 14.66621017456055 C 9.75 13.9298095703125 10.33271980285645 13.3324499130249 11.05025005340576 13.3324499130249 C 11.76855945587158 13.3324499130249 12.34898948669434 13.9298095703125 12.34898948669434 14.66621017456055 C 12.34898948669434 15.40266036987305 11.76855945587158 16 11.05025005340576 16 Z M 4.55126953125 16 C 3.83372974395752 16 3.250249624252319 15.40266036987305 3.250249624252319 14.66621017456055 C 3.250249624252319 13.9298095703125 3.83372974395752 13.3324499130249 4.55126953125 13.3324499130249 C 5.268809795379639 13.3324499130249 5.849999904632568 13.9298095703125 5.849999904632568 14.66621017456055 C 5.849999904632568 15.40266036987305 5.268809795379639 16 4.55126953125 16 Z M 12.99948978424072 12.66732978820801 L 4.407309532165527 12.66732978820801 C 3.417829751968384 12.66555023193359 2.586039781570435 11.90771961212158 2.470249652862549 10.90027046203613 L 1.441169738769531 1.920429944992065 C 1.400799751281738 1.585209965705872 1.124299764633179 1.331979990005493 0.7952297329902649 1.331979990005493 L -2.861023062905588e-07 1.331979990005493 L -2.861023062905588e-07 0 L 0.7952297329902649 0 C 1.783179759979248 0 2.614219665527344 0.7578099966049194 2.73151969909668 1.765310049057007 L 2.758179664611816 1.99888002872467 L 15.59999942779541 1.99888002872467 L 14.19386959075928 9.99977970123291 L 3.674529790878296 9.99977970123291 L 3.759839773178101 10.74335956573486 C 3.798689603805542 11.08034992218018 4.076719760894775 11.33356952667236 4.407309532165527 11.33356952667236 L 12.99948978424072 11.33356952667236 L 12.99948978424072 12.66732978820801 Z"
+                                                                stroke="none" fill="#1e272e" />
+                                                        </g>
+                                                    </svg>
+
+                                                </a>
+                                            </div>
+                                            <div class="s0501_notification_count_wrapper">
+                                                <span class="s0501_notification_count">
+                                                    2
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li> <a href="#">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14.001" height="20.004"
+                                                viewBox="0 0 14.001 20.004">
+                                                <g id="Icon" transform="translate(-10570 -233)" fill="none">
+                                                    <path
+                                                        d="M10570,253v-4.2a4.006,4.006,0,0,1,3.854-4.133h6.29A4.006,4.006,0,0,1,10584,248.8V253Zm2.335-15a4.678,4.678,0,1,1,4.667,5A4.842,4.842,0,0,1,10572.335,238Z"
+                                                        stroke="none" />
+                                                    <path
+                                                        d="M 10582.80078125 251.8037109375 L 10582.80078125 248.8030853271484 C 10582.798828125 247.1867523193359 10581.6064453125 245.8702697753906 10580.14453125 245.8684387207031 L 10573.8564453125 245.8684387207031 C 10572.3935546875 245.8702697753906 10571.2021484375 247.1867523193359 10571.2001953125 248.8015441894531 L 10571.2001953125 251.8037109375 L 10582.80078125 251.8037109375 M 10577.001953125 241.802978515625 C 10578.9140625 241.802978515625 10580.46875 240.0975494384766 10580.46875 238.0012969970703 C 10580.46875 235.9050445556641 10578.9140625 234.1996154785156 10577.001953125 234.1996154785156 C 10575.08984375 234.1996154785156 10573.53515625 235.9050445556641 10573.53515625 238.0012969970703 C 10573.53515625 240.0975494384766 10575.08984375 241.802978515625 10577.001953125 241.802978515625 M 10584.0009765625 253.0037078857422 L 10570 253.0037078857422 L 10570 248.8015441894531 C 10570.0029296875 246.5198364257812 10571.7265625 244.6710968017578 10573.8544921875 244.6684417724609 L 10580.14453125 244.6684417724609 C 10582.2744140625 244.6710968017578 10583.998046875 246.5198364257812 10584.0009765625 248.8015441894531 L 10584.0009765625 253.0037078857422 Z M 10577.001953125 243.0029754638672 C 10574.4228515625 243.0029754638672 10572.3349609375 240.7637786865234 10572.3349609375 238.0012969970703 C 10572.3349609375 235.2388000488281 10574.4228515625 232.9996032714844 10577.001953125 232.9996032714844 C 10579.578125 232.9996032714844 10581.6689453125 235.2388000488281 10581.6689453125 238.0012969970703 C 10581.6689453125 240.7637786865234 10579.578125 243.0029754638672 10577.001953125 243.0029754638672 Z"
+                                                        stroke="none" fill="#1e272e" />
+                                                </g>
+                                            </svg>
+
+                                        </a>
+                                    </li>
+                                    <li> <a href="#" id="s0501_large_device_sidebar_open">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="17.5"
+                                                viewBox="0 0 18 17.5">
+                                                <g id="Hamburger" transform="translate(-1598 -39.25)">
+                                                    <g id="Icon">
+                                                        <line id="Shape_3" data-name="Shape 3" x2="18"
+                                                            transform="translate(1598 40)" fill="none" stroke="#1e272e"
+                                                            stroke-width="1.5" />
+                                                        <line id="Shape_2" data-name="Shape 2" x2="18"
+                                                            transform="translate(1598 48)" fill="none" stroke="#1e272e"
+                                                            stroke-width="1.5" />
+                                                        <line id="Shape_1" data-name="Shape 1" x2="10"
+                                                            transform="translate(1606 56)" fill="none" stroke="#1e272e"
+                                                            stroke-width="1.5" />
+                                                    </g>
+                                                </g>
+                                            </svg>
+
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- mobile menu footer -->
+            <div class="s0501_mobile_menu_footer_wrapper">
+                <div class="s0501_container">
+                    <div class="s0501_mobile_menu_footer">
+                        <ul class="s0501_navbar_item">
+                            <li> <a href="#" id="s0501_mobile_open_sidebar">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="16.222"
+                                        viewBox="0 0 15 16.222">
+                                        <g id="Icon" transform="translate(-1598.5 -39)">
+                                            <line id="Shape_3" data-name="Shape 3" x2="15"
+                                                transform="translate(1598.5 40)" fill="none" stroke="#1e272e"
+                                                stroke-width="2" opacity="0.3" />
+                                            <line id="Shape_2" data-name="Shape 2" x2="15"
+                                                transform="translate(1598.5 47.111)" fill="none" stroke="#1e272e"
+                                                stroke-width="2" opacity="0.3" />
+                                            <line id="Shape_1" data-name="Shape 1" x2="10"
+                                                transform="translate(1603.5 54.222)" fill="none" stroke="#1e272e"
+                                                stroke-width="2" opacity="0.3" />
+                                        </g>
+                                    </svg>
+
+                                </a>
+                            </li>
+                            <li>
+                                <div class="s0501_wishlist_icon_wrapper">
+                                    <div class="s0501_wishlist_icon">
+                                        <a href="#" id="s0501_active_fill_icon"> <svg xmlns="http://www.w3.org/2000/svg"
+                                                width="16" height="14.993" viewBox="0 0 16 14.993">
+                                                <g id="heart_1_" data-name="heart (1)"
+                                                    transform="translate(0.005 -0.917)" fill="none">
+                                                    <path
+                                                        d="M11.66.917A4.262,4.262,0,0,0,8,3.127,4.262,4.262,0,0,0,4.33.917,4.545,4.545,0,0,0,0,5.638c0,4.537,7.3,9.776,7.612,10L8,15.91l.385-.274c.311-.221,7.612-5.462,7.612-10A4.545,4.545,0,0,0,11.66.917Z"
+                                                        stroke="none" />
+                                                    <path
+                                                        d="M 4.346558570861816 2.117606163024902 C 2.53859806060791 2.215920448303223 1.128963470458984 3.767226219177246 1.197503089904785 5.592656135559082 L 1.198352813720703 5.637685775756836 C 1.198352813720703 7.180126190185547 2.355712890625 9.178046226501465 4.545312881469727 11.41544628143311 C 5.937286376953125 12.83780479431152 7.368166923522949 13.95915985107422 7.995199680328369 14.4299201965332 C 8.613064765930176 13.96612167358398 10.05007171630859 12.84128570556641 11.44479274749756 11.41598606109619 C 13.63442230224609 9.178365707397461 14.79179286956787 7.180266380310059 14.79179286956787 5.637685775756836 L 14.79264259338379 5.592656135559082 C 14.86118221282959 3.767226219177246 13.4515552520752 2.215920448303223 11.64359474182129 2.117607116699219 C 10.56367492675781 2.147141456604004 9.570833206176758 2.753149032592773 9.046162605285645 3.705656051635742 L 7.995072841644287 5.613865852355957 L 6.94398307800293 3.705656051635742 C 6.419312477111816 2.753138542175293 5.426467895507812 2.147130966186523 4.346558570861816 2.117606163024902 M 4.329913139343262 0.9169960021972656 C 5.857302665710449 0.9408664703369141 7.255342483520508 1.783736228942871 7.995072841644287 3.126686096191406 C 8.73480224609375 1.783736228942871 10.13285255432129 0.9408760070800781 11.66023254394531 0.9169960021972656 C 14.15046310424805 1.025715827941895 16.08577346801758 3.134896278381348 15.99179267883301 5.637685775756836 C 15.99179267883301 10.17423629760742 8.69078254699707 15.41519641876221 8.380252838134766 15.63616561889648 L 7.995072841644287 15.91003608703613 L 7.609892845153809 15.63616561889648 C 7.299363136291504 15.41385650634766 -0.001646995544433594 10.17423629760742 -0.001646995544433594 5.637685775756836 C -0.09562778472900391 3.134896278381348 1.839682579040527 1.025715827941895 4.329913139343262 0.9169960021972656 Z"
+                                                        stroke="none" fill="#1e272e" />
+                                                </g>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="s0501_notification_count_wrapper">
+                                        <span class="s0501_notification_count">
+                                            2
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="s0501_wishlist_icon_wrapper">
+                                    <div class="s0501_wishlist_icon">
+                                        <a href="#">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
+                                                viewBox="0 0 17 17">
+                                                <path id="Union_3" data-name="Union 3"
+                                                    d="M10.624,15.584A1.417,1.417,0,1,1,12.041,17,1.416,1.416,0,0,1,10.624,15.584Zm-7.084,0A1.417,1.417,0,1,1,4.958,17,1.416,1.416,0,0,1,3.541,15.584ZM4.8,13.459a2.125,2.125,0,0,1-2.109-1.877L1.568,2.042a.707.707,0,0,0-.7-.625H0V0H.864a2.125,2.125,0,0,1,2.11,1.877L3,2.125H17l-1.533,8.5H4l.093.791a.707.707,0,0,0,.7.627h9.367v1.416Z"
+                                                    fill="#1e272e" opacity="0.3" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="s0501_notification_count_wrapper">
+                                        <span class="s0501_notification_count">
+                                            2
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li> <a href="#">
+                                    <svg id="user_1_" data-name="user (1)" xmlns="http://www.w3.org/2000/svg" width="12"
+                                        height="16.616" viewBox="0 0 12 16.616">
+                                        <path id="Union_4" data-name="Union 4"
+                                            d="M0,16.616v-3.49A3.373,3.373,0,0,1,3.3,9.693H8.7A3.374,3.374,0,0,1,12,13.125v3.49ZM2,4.154A4.079,4.079,0,0,1,6,0a4.08,4.08,0,0,1,4,4.154A4.079,4.079,0,0,1,6,8.309,4.079,4.079,0,0,1,2,4.154Z"
+                                            transform="translate(0)" fill="#1e272e" opacity="0.3" />
+                                    </svg>
+
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- sidebar navigation -->
+            <div class="s0501_sidebar_navigation_main_wrapper">
+                <div class="s0501_sidebar_content_main_wrapper">
+                    <div class="s0501_sidebar_navigation_content_wrapper">
+                        <div class="s0501_sidebar_close_btn_wrapper" id="s0501_mobile_close_sidebar">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">
+                                <g id="Cross" transform="translate(5)">
+                                    <path id="fi-rr-cross-small"
+                                        d="M17.428,5.986h0a.953.953,0,0,0-1.348,0l-4.373,4.373L7.335,5.986a.953.953,0,0,0-1.348,0h0a.953.953,0,0,0,0,1.348l4.373,4.373L5.986,16.08a.953.953,0,0,0,0,1.348h0a.953.953,0,0,0,1.348,0l4.373-4.373,4.373,4.373a.953.953,0,0,0,1.348,0h0a.953.953,0,0,0,0-1.348l-4.373-4.373,4.373-4.373A.953.953,0,0,0,17.428,5.986Z"
+                                        transform="translate(-10.707 -5.707)" fill="#1e272e" />
+                                </g>
+                            </svg>
+                        </div>
+
+                        <div class="s0501_sidebar_catagories_list_wrapper">
+                            <div class="s0501_sidebar_catagories_list_container">
+                                <ul class="s0501_sidebar_catagories_list">
+                                    <li>
+                                        <div class="s0501_catagories_single_item_wrapper">
+                                            <div class="s0501_catagories_single_item">
+                                                <span>All Catagories</span>
+                                            </div>
+                                            <div class="s0501_drop_menu_icon">
+                                                <span>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="9" height="4.893"
+                                                        viewBox="0 0 9 4.893">
+                                                        <path id="Path_1729" data-name="Path 1729"
+                                                            d="M9.793,13.1a1.337,1.337,0,0,1-.949-.392L5.293,9.156l.949-.949,3.551,3.551,3.551-3.551.949.949-3.551,3.551a1.337,1.337,0,0,1-.949.393Z"
+                                                            transform="translate(-5.293 -8.207)" fill="#1e272e" />
+                                                    </svg>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <!-- sub menu wrapper -->
+                                        <div class="s0501_submenu_main_wrapper">
+                                            <ul class="s0501_sidebar_sub_catagories_list">
+                                                <li>
+                                                    <div class="s0501_catagories_single_item_wrapper">
+                                                        <div class="s0501_catagories_single_item">
+                                                            <span class="s0501_sub_catagories_item">Sofa</span>
+                                                        </div>
+                                                        <div class="s0501_drop_menu_icon">
+                                                            <span>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="9"
+                                                                    height="4.893" viewBox="0 0 9 4.893">
+                                                                    <path id="Path_1729" data-name="Path 1729"
+                                                                        d="M9.793,13.1a1.337,1.337,0,0,1-.949-.392L5.293,9.156l.949-.949,3.551,3.551,3.551-3.551.949.949-3.551,3.551a1.337,1.337,0,0,1-.949.393Z"
+                                                                        transform="translate(-5.293 -8.207)"
+                                                                        fill="#1e272e" />
+                                                                </svg>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="s0501_catagories_single_item_wrapper">
+                                                        <div class="s0501_catagories_single_item">
+                                                            <span class="s0501_sub_catagories_item">Center Table</span>
+                                                        </div>
+                                                        <div class="s0501_drop_menu_icon">
+                                                            <span>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="9"
+                                                                    height="4.893" viewBox="0 0 9 4.893">
+                                                                    <path id="Path_1729" data-name="Path 1729"
+                                                                        d="M9.793,13.1a1.337,1.337,0,0,1-.949-.392L5.293,9.156l.949-.949,3.551,3.551,3.551-3.551.949.949-3.551,3.551a1.337,1.337,0,0,1-.949.393Z"
+                                                                        transform="translate(-5.293 -8.207)"
+                                                                        fill="#1e272e" />
+                                                                </svg>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="s0501_catagories_single_item_wrapper">
+                                                        <div class="s0501_catagories_single_item">
+                                                            <span class="s0501_sub_catagories_item">Divan</span>
+                                                        </div>
+                                                        <div class="s0501_drop_menu_icon">
+                                                            <span>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="9"
+                                                                    height="4.893" viewBox="0 0 9 4.893">
+                                                                    <path id="Path_1729" data-name="Path 1729"
+                                                                        d="M9.793,13.1a1.337,1.337,0,0,1-.949-.392L5.293,9.156l.949-.949,3.551,3.551,3.551-3.551.949.949-3.551,3.551a1.337,1.337,0,0,1-.949.393Z"
+                                                                        transform="translate(-5.293 -8.207)"
+                                                                        fill="#1e272e" />
+                                                                </svg>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="s0501_catagories_single_item_wrapper">
+                                                        <div class="s0501_catagories_single_item">
+                                                            <span class="s0501_sub_catagories_item">Chair</span>
+                                                        </div>
+                                                        <div class="s0501_drop_menu_icon">
+                                                            <span>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="9"
+                                                                    height="4.893" viewBox="0 0 9 4.893">
+                                                                    <path id="Path_1729" data-name="Path 1729"
+                                                                        d="M9.793,13.1a1.337,1.337,0,0,1-.949-.392L5.293,9.156l.949-.949,3.551,3.551,3.551-3.551.949.949-3.551,3.551a1.337,1.337,0,0,1-.949.393Z"
+                                                                        transform="translate(-5.293 -8.207)"
+                                                                        fill="#1e272e" />
+                                                                </svg>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="s0501_catagories_single_item_wrapper">
+                                                        <div class="s0501_catagories_single_item">
+                                                            <span class="s0501_sub_catagories_item">Bed</span>
+                                                        </div>
+                                                        <div class="s0501_drop_menu_icon">
+                                                            <span>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="9"
+                                                                    height="4.893" viewBox="0 0 9 4.893">
+                                                                    <path id="Path_1729" data-name="Path 1729"
+                                                                        d="M9.793,13.1a1.337,1.337,0,0,1-.949-.392L5.293,9.156l.949-.949,3.551,3.551,3.551-3.551.949.949-3.551,3.551a1.337,1.337,0,0,1-.949.393Z"
+                                                                        transform="translate(-5.293 -8.207)"
+                                                                        fill="#1e272e" />
+                                                                </svg>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="s0501_catagories_single_item_wrapper">
+                                                        <div class="s0501_catagories_single_item">
+                                                            <span class="s0501_sub_catagories_item">Lighting</span>
+                                                        </div>
+                                                        <div class="s0501_drop_menu_icon">
+                                                            <span>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="9"
+                                                                    height="4.893" viewBox="0 0 9 4.893">
+                                                                    <path id="Path_1729" data-name="Path 1729"
+                                                                        d="M9.793,13.1a1.337,1.337,0,0,1-.949-.392L5.293,9.156l.949-.949,3.551,3.551,3.551-3.551.949.949-3.551,3.551a1.337,1.337,0,0,1-.949.393Z"
+                                                                        transform="translate(-5.293 -8.207)"
+                                                                        fill="#1e272e" />
+                                                                </svg>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="s0501_catagories_single_item_wrapper">
+                                                        <div class="s0501_catagories_single_item">
+                                                            <span class="s0501_sub_catagories_item">Wardrove</span>
+                                                        </div>
+                                                        <div class="s0501_drop_menu_icon">
+                                                            <span>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="9"
+                                                                    height="4.893" viewBox="0 0 9 4.893">
+                                                                    <path id="Path_1729" data-name="Path 1729"
+                                                                        d="M9.793,13.1a1.337,1.337,0,0,1-.949-.392L5.293,9.156l.949-.949,3.551,3.551,3.551-3.551.949.949-3.551,3.551a1.337,1.337,0,0,1-.949.393Z"
+                                                                        transform="translate(-5.293 -8.207)"
+                                                                        fill="#1e272e" />
+                                                                </svg>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- sub sub catagories area -->
+                                                    <div class="s0501_sub_sub_catagories_wrapper">
+                                                        <ul class="s0501_sub_sub_catagories_item">
+                                                            <li> <a href="#">Double Door</a> </li>
+                                                            <li> <a href="#">Basic WarDrove</a> </li>
+                                                        </ul>
+                                                    </div>
+
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+
+                                    <li> <a href="#">Contact Us</a> </li>
+                                    <li> <a href="#">About Us</a> </li>
+                                    <li> <a href="#">Privacy Plicy</a> </li>
+                                    <li> <a href="#">FAQ</a> </li>
+                                    <li> <a href="#">Term & Condition</a> </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- sidebabr footer -->
+                        <div class="s0501_sidebar_navigation_footer">
+                            <div class="s0501_get_in_touch_text_wrapper">
+                                <span class="s0501_get_in_touch_text">Get in Touch</span>
+                            </div>
+                            <div class="s0501_social_icon_wrapper">
+                                <ul class="s0501_social_icon_list">
+                                    <li> <a href="#"> <svg xmlns="http://www.w3.org/2000/svg" width="6.496" height="14"
+                                                viewBox="0 0 6.496 14">
+                                                <path id="Path_1689" data-name="Path 1689"
+                                                    d="M3.248-8.064H1.04V-9.52a.673.673,0,0,1,.208-.544.62.62,0,0,1,.4-.128H3.216v-2.4l-2.16-.016A3.071,3.071,0,0,0-.768-12.1a2.464,2.464,0,0,0-.88,1.152,3.587,3.587,0,0,0-.224,1.28v1.6H-3.248V-5.6h1.376V1.392H1.04V-5.6H2.992Z"
+                                                    transform="translate(3.248 12.608)" fill="#c1a59a" />
+                                            </svg>
+                                        </a></li>
+                                    <li> <a href="#"> <svg xmlns="http://www.w3.org/2000/svg" width="14.016"
+                                                height="11.376" viewBox="0 0 14.016 11.376">
+                                                <path id="Path_1687" data-name="Path 1687"
+                                                    d="M7.008-9.952a6.157,6.157,0,0,1-1.664.464,2.666,2.666,0,0,0,.776-.672,2.867,2.867,0,0,0,.488-.928,5.243,5.243,0,0,1-1.824.7,2.646,2.646,0,0,0-.936-.672,2.879,2.879,0,0,0-1.16-.24,2.755,2.755,0,0,0-1.44.392A2.923,2.923,0,0,0,.208-9.856a2.8,2.8,0,0,0-.384,1.44,2.9,2.9,0,0,0,.064.656,8.112,8.112,0,0,1-3.312-.9,8.193,8.193,0,0,1-2.608-2.112,2.9,2.9,0,0,0-.384,1.432A2.832,2.832,0,0,0-6.072-7.96a2.9,2.9,0,0,0,.936,1.032,2.609,2.609,0,0,1-1.3-.368v.048a2.777,2.777,0,0,0,.648,1.824,2.828,2.828,0,0,0,1.656.992,2.912,2.912,0,0,1-.768.1,2.7,2.7,0,0,1-.528-.048A2.772,2.772,0,0,0-4.416-2.968,2.786,2.786,0,0,0-2.752-2.4a5.505,5.505,0,0,1-1.656.912,5.779,5.779,0,0,1-1.912.32q-.208,0-.64-.032h-.048A8.025,8.025,0,0,0-2.592.08a8.283,8.283,0,0,0,3.5-.736,7.775,7.775,0,0,0,2.56-1.92A8.583,8.583,0,0,0,5.04-5.2a8.228,8.228,0,0,0,.528-2.88v-.384A5.792,5.792,0,0,0,7.008-9.952Z"
+                                                    transform="translate(7.008 11.296)" fill="#c1a59a" />
+                                            </svg>
+
+                                        </a></li>
+                                    <li> <a href="#"> <svg xmlns="http://www.w3.org/2000/svg" width="10.848"
+                                                height="14.004" viewBox="0 0 10.848 14.004">
+                                                <path id="Path_1686" data-name="Path 1686"
+                                                    d="M.336-12.608a6.306,6.306,0,0,0-3.2.8,5.218,5.218,0,0,0-1.92,1.9,4.616,4.616,0,0,0-.64,2.32,4.175,4.175,0,0,0,.4,1.888A2.326,2.326,0,0,0-3.776-4.512.312.312,0,0,0-3.52-4.5.261.261,0,0,0-3.376-4.7l.176-.64a.532.532,0,0,0,.008-.24.637.637,0,0,0-.136-.208,2.406,2.406,0,0,1-.528-1.584,3.907,3.907,0,0,1,.488-1.912A3.6,3.6,0,0,1-2-10.688a4.1,4.1,0,0,1,2.112-.544,3.776,3.776,0,0,1,1.824.416,2.69,2.69,0,0,1,1.128,1.08,3.188,3.188,0,0,1,.392,1.592A6.849,6.849,0,0,1,3.136-6a3.709,3.709,0,0,1-.9,1.536A1.853,1.853,0,0,1,.9-3.872,1.32,1.32,0,0,1,.16-4.08a1.233,1.233,0,0,1-.472-.568,1.235,1.235,0,0,1-.056-.776q.1-.384.336-1.152Q.16-7.2.24-7.488a3.606,3.606,0,0,0,.112-.784A1.265,1.265,0,0,0,.08-9.12a.976.976,0,0,0-.816-.368,1.251,1.251,0,0,0-.784.272,1.86,1.86,0,0,0-.56.752,2.669,2.669,0,0,0-.208,1.072,3.337,3.337,0,0,0,.064.656,2.747,2.747,0,0,0,.128.448l.064.16-1.04,4.384A8.421,8.421,0,0,0-3.1,1.216l.016.1a.1.1,0,0,0,.08.08A.111.111,0,0,0-2.9,1.36l.048-.048A8.075,8.075,0,0,0-1.44-1.28l.56-2.208a1.7,1.7,0,0,0,.768.712,2.53,2.53,0,0,0,1.2.3A3.758,3.758,0,0,0,3.36-3.216a4.717,4.717,0,0,0,1.512-1.96A6.948,6.948,0,0,0,5.424-8a4.321,4.321,0,0,0-.64-2.264,4.539,4.539,0,0,0-1.76-1.672A5.406,5.406,0,0,0,.336-12.608Z"
+                                                    transform="translate(5.424 12.608)" fill="#c1a59a" />
+                                            </svg>
+                                        </a></li>
+                                    <li> <a href="#"> <svg xmlns="http://www.w3.org/2000/svg" width="15.824"
+                                                height="15.824" viewBox="0 0 15.824 15.824">
+                                                <path id="Path_1688" data-name="Path 1688"
+                                                    d="M-.016-9.712a3.987,3.987,0,0,0-2.048.552,4.169,4.169,0,0,0-1.5,1.5,3.958,3.958,0,0,0-.56,2.056,4,4,0,0,0,.552,2.056,4.088,4.088,0,0,0,1.5,1.5A4.044,4.044,0,0,0-.008-1.5a4,4,0,0,0,2.056-.552,4.106,4.106,0,0,0,1.5-1.5A4,4,0,0,0,4.1-5.608a4,4,0,0,0-.552-2.056,4.106,4.106,0,0,0-1.5-1.5A4.016,4.016,0,0,0-.016-9.712Zm0,6.64a2.462,2.462,0,0,1-1.272-.344,2.58,2.58,0,0,1-.928-.928A2.462,2.462,0,0,1-2.56-5.616,2.42,2.42,0,0,1-2.216-6.88a2.6,2.6,0,0,1,.928-.92A2.462,2.462,0,0,1-.016-8.144,2.462,2.462,0,0,1,1.256-7.8a2.6,2.6,0,0,1,.928.92,2.42,2.42,0,0,1,.344,1.264,2.462,2.462,0,0,1-.344,1.272,2.58,2.58,0,0,1-.928.928A2.462,2.462,0,0,1-.016-3.072ZM3.344-13.52h-6.72a4.419,4.419,0,0,0-2.288.624A4.5,4.5,0,0,0-7.312-11.24,4.464,4.464,0,0,0-7.92-8.96v6.7A4.464,4.464,0,0,0-7.312.024,4.5,4.5,0,0,0-5.664,1.68,4.419,4.419,0,0,0-3.376,2.3h6.72a4.5,4.5,0,0,0,2.3-.624A4.6,4.6,0,0,0,7.28.048a4.5,4.5,0,0,0,.624-2.3v-6.7a4.5,4.5,0,0,0-.624-2.3A4.6,4.6,0,0,0,5.648-12.9,4.5,4.5,0,0,0,3.344-13.52ZM6.336-2.256a2.939,2.939,0,0,1-.4,1.5A2.957,2.957,0,0,1,4.848.336a2.939,2.939,0,0,1-1.5.4h-6.72a2.9,2.9,0,0,1-1.5-.4A2.976,2.976,0,0,1-5.952-.752a2.939,2.939,0,0,1-.4-1.5v-6.7a2.939,2.939,0,0,1,.4-1.5,2.976,2.976,0,0,1,1.08-1.088,2.9,2.9,0,0,1,1.5-.4h6.72a2.939,2.939,0,0,1,1.5.4,2.957,2.957,0,0,1,1.088,1.088,2.939,2.939,0,0,1,.4,1.5ZM4.16-10.912a1.047,1.047,0,0,0-.768.32,1.047,1.047,0,0,0-.32.768,1.021,1.021,0,0,0,.32.76,1.061,1.061,0,0,0,.768.312,1.034,1.034,0,0,0,.76-.312,1.034,1.034,0,0,0,.312-.76,1.061,1.061,0,0,0-.312-.768A1.021,1.021,0,0,0,4.16-10.912Z"
+                                                    transform="translate(7.92 13.52)" fill="#c1a59a" />
+                                            </svg>
+
+                                        </a></li>
+                                    <li> <a href="#"> <svg xmlns="http://www.w3.org/2000/svg" width="13.92"
+                                                height="14.016" viewBox="0 0 13.92 14.016">
+                                                <path id="Path_1685" data-name="Path 1685"
+                                                    d="M5.936-12.608H-5.92a1.016,1.016,0,0,0-.736.3.958.958,0,0,0-.3.712V.4a.958.958,0,0,0,.3.712,1.016,1.016,0,0,0,.736.3H5.936a1,1,0,0,0,.72-.3A.958.958,0,0,0,6.96.4v-12a.958.958,0,0,0-.3-.712A1,1,0,0,0,5.936-12.608ZM-2.736-.88h-2.1V-7.2h2.1ZM-3.792-8.064h-.016a1.141,1.141,0,0,1-.832-.312,1.049,1.049,0,0,1-.32-.784,1.037,1.037,0,0,1,.328-.784,1.191,1.191,0,0,1,.856-.312,1.163,1.163,0,0,1,.848.312,1.049,1.049,0,0,1,.32.784,1.049,1.049,0,0,1-.32.784A1.185,1.185,0,0,1-3.792-8.064ZM4.832-.88h-2.1V-4.272A1.816,1.816,0,0,0,2.5-5.3a.921.921,0,0,0-.816-.4,1.1,1.1,0,0,0-.7.24,1.5,1.5,0,0,0-.384.528,1.665,1.665,0,0,0-.064.512V-.88h-2.1V-3.824q.016-3.008,0-3.376h2.1v.9a2.1,2.1,0,0,1,1.888-1.04,2.246,2.246,0,0,1,1.728.688,3.065,3.065,0,0,1,.688,2.144Z"
+                                                    transform="translate(6.96 12.608)" fill="#c1a59a" />
+                                            </svg>
+                                        </a></li>
+                                    <li> <a href="#"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="11.224"
+                                                viewBox="0 0 16 11.224">
+                                                <path id="YouTube"
+                                                    d="M8-6.736H7.968V-7.2a4.288,4.288,0,0,0-.032-.432v-.032A3.4,3.4,0,0,0,7.9-8.048l-.032-.384Q7.856-8.688,7.84-8.8q-.064-.288-.224-.832a1.685,1.685,0,0,0-.352-.672,2.061,2.061,0,0,0-1.408-.72q-.288-.032-.848-.064l-.88-.048q-.8-.032-1.232-.032Q2.1-11.2,1.68-11.2H.9q-1.072-.016-1.6,0-.8,0-2.4.032l-1.344.048q-.7.032-1.064.064t-.7.1a1.84,1.84,0,0,0-1.184.848,2.941,2.941,0,0,0-.384,1.056q-.064.3-.128.912-.032.288-.064.88v.048Q-8-6.7-8-6.448q0,1.44.016,2.16,0,.192.032.544.032.512.064.768l.016.192q.016.256.032.384a5.062,5.062,0,0,0,.256.944A1.823,1.823,0,0,0-6.4-.32a4.873,4.873,0,0,0,1.1.192h.016q.208.016.608.032l.3.016q.512.032.768.032l1.184.032L.608.016,3.024-.032l.992-.032A2.585,2.585,0,0,0,4.352-.08H4.4q.688-.032,1.04-.064a5.267,5.267,0,0,0,.672-.08A1.924,1.924,0,0,0,7.584-1.472a4.876,4.876,0,0,0,.3-1.44q.032-.256.064-.784L8-4.832ZM-1.648-3.52v-4.5L2.672-5.76Z"
+                                                    transform="translate(8 11.208)" fill="#c1a59a" />
+                                            </svg>
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- search popup -->
+            <div class="s0501_search_popup_main_wrapper">
+                <div class="s0501_search_content_wrapper">
+                    <!-- popup close btn area -->
+                    <div class="s0501_popup_close_area_wrapper">
+                        <div class="s0501_close_text_wrapper">
+                            <span class="s0501_close_text">Close</span>
+                        </div>
+                        <div class="s0501_close_btn_wrapper">
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 9 9">
+                                    <path id="cross_2_" data-name="cross (2)"
+                                        d="M8.939.731,8.147-.061,4.439,3.648.731-.061-.061.731,3.648,4.439-.061,8.147l.792.792L4.439,5.23,8.147,8.939l.792-.792L5.23,4.439Z"
+                                        transform="translate(0.061 0.061)" fill="#fff" />
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- search input box -->
+                    <div class="s0501_search_input_box_wrapper">
+                        <input class="s0501_search_input" type="text" placeholder="Search">
+                    </div>
+
+                    <!-- search result output area -->
+                    <div class="s0501_search_result_output_wrappper">
+                        <div class="s0501_s0501_search_result_output">
+                            <ul class="s0501_search_result_list">
+                                <li><span class="s0501_result_item">Foam and memory foam materess</span> </li>
+                                <li><span class="s0501_result_item">Foam and memory foam materess</span> </li>
+                                <li><span class="s0501_result_item">Foam and memory foam materess</span> </li>
+                                <li><span class="s0501_result_item">Foam and memory foam materess</span> </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </header>
+
+    <script>
+        const s0501_mobile_open_sidebar = document.getElementById("s0501_mobile_open_sidebar");
+        const s0501_sidebar_content_main_wrapper = document.querySelector(".s0501_sidebar_content_main_wrapper");
+        const s0501_sidebar_navigation_main_wrapper = document.querySelector(".s0501_sidebar_navigation_main_wrapper ")
+        const s0501_mobile_close_sidebar = document.getElementById("s0501_mobile_close_sidebar");
+        // mobile sidebar open
+        s0501_mobile_open_sidebar.addEventListener("click", function () {
+            s0501_sidebar_content_main_wrapper.classList.add("active_mobile_sidebar");
+            s0501_sidebar_navigation_main_wrapper.classList.add("active_mobile_sidebar");
+        });
+        s0501_mobile_close_sidebar.addEventListener("click", function () {
+            s0501_sidebar_content_main_wrapper.classList.remove("active_mobile_sidebar");
+            s0501_sidebar_navigation_main_wrapper.classList.remove("active_mobile_sidebar");
+        });
+        // chnage fill color
+        const s0501_active_fill_icon = document.getElementById("s0501_active_fill_icon");
+        s0501_active_fill_icon.addEventListener("click", function () {
+            s0501_active_fill_icon.classList.toggle("active_icon");
+        });
+        const s0501_active_fill_icon_large_device = document.getElementById("s0501_active_fill_icon_large_device");
+        s0501_active_fill_icon_large_device.addEventListener("click", function () {
+            s0501_active_fill_icon_large_device.classList.toggle("active_icon");
+        });
+
+
+    </script>
+</body>
+
+</html>
